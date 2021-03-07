@@ -1,21 +1,19 @@
-
-
 <html>
     <head>
-      <script src='https://cdn.tiny.cloud/1/6orenx6fs8b9ela20tcfcoqzf4t9s6npqeefednfsee5jmzo/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
-      <script>
-      tinymce.init({
-      selector: 'textarea',
-      plugins: ['advlist autolink link image lists charmap print preview hr anchor pagebreak',
-      'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-      'table emoticons template paste help'],
-    
-      image_list: [
-        {title: 'My image 1', value: 'https://www.example.com/my1.gif'},
-        {title: 'My image 2', value: 'f1.jpg'}
-      ]
-    });
-      </script>
+        <script src='https://cdn.tiny.cloud/1/6orenx6fs8b9ela20tcfcoqzf4t9s6npqeefednfsee5jmzo/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+        <script>
+                tinymce.init({
+                selector: 'textarea',
+                plugins: ['advlist autolink link image lists charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'table emoticons template paste help'],
+
+                image_list: [
+                {title: 'My image 1', value: 'https://www.example.com/my1.gif'},
+                {title: 'My image 2', value: 'f1.jpg'}
+                ]
+            });
+        </script>
     </head>
     <body>
         <div id="editor">
@@ -48,13 +46,16 @@
                         <option value="karriere tjera">Karriere Tjera</option>
                         <option value="rregullore">Rregullore</option>
                         <option value="rreth fti">Rreth FTI</option>
+                        <option value="dep info">Departamenti i Inxhinierisë Informatike</option>
+                        <option value="dep elek">Departamenti i Elektronikës dhe Telekomunikacionit</option>
+                        <option value="dep baza">Departamenti i Bazave të Informatikës</option>
                     </select>
                 </div>
                 <label for="fname">Title:</label>
-                <input type="text" id="title" name="title">
-                <input type="submit" value="Submit">
+                <input type="text" id="title" name="title" required>
                 <textarea id="mytextarea" name="createdPost"></textarea>
+                <input type="submit" value="Submit">
             </form>
         </div>
     </body>
-    </html>
+</html>

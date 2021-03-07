@@ -1,16 +1,17 @@
 <!DOCTYPE html>
+
 <?php
     include("adminPanel.php");
-    
+?>
+
+<div class="post_container">
+
+<?php
     $query = "SELECT * FROM posts";
 
     $total_reg = "10";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        if (empty($_POST["createdPost"])) {
-            $bodyErr = "Can't submit empty post";
-        }
-        else{
             
             $body = test_input($_POST["createdPost"]);
             $title = test_input($_POST["title"]);
@@ -34,7 +35,6 @@
             unset($_SESSION['post_id']);
             echo "<script> window.location.replace('adminDashboard.php') </script>";
 
-        }
     }
 
     if(isset($_GET['page'])){
@@ -61,7 +61,7 @@
             $result = mysqli_query($conn,$query);
             $row = mysqli_fetch_array($result);
             $name = $data["title"];
-            echo "<p id='post'>Posted By:". $row['name']. "Title:". $name."</p><a href='?edit=True&post_id=".$data['id']."'><i class='fas fa-edit'></i></a><a href='?delete=True&post_id=".$data['id']."'><i class='fas fa-trash-alt'></i></a>";
+            echo "<div class='post'><p>Posted By:". $row['name']. "             Title:". mb_strimwidth($name, 0, 50, "...") ."</p><a href='?edit=True&post_id=".$data['id']."'><i class='fas fa-edit'></i></a><a href='?delete=True&post_id=".$data['id']."'><i class='fas fa-trash-alt'></i></a></div>";
 
         }
 
@@ -70,10 +70,14 @@
         if ($pc>1) {
             echo " <a href='?page=$previous'><-".$previous."</a> ";
         }
+        if($pc > 1 and $pc < $tp){
             echo "|";
+        }
+            
         if ($pc<$tp) {
             echo " <a href='?page=$next'>".$next."-></a>";
         }
+        
 
     }
     elseif(isset($_GET['edit']) and isset($_GET['post_id'])){
@@ -101,24 +105,5 @@
         header("Location: adminEditPost.php?page=1");
     }
 
-    function test_input($data) {
-        $data = trim($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-    function slugify($text){
-    
-      $text = preg_replace('~[^\pL\d]+~u', '-', $text);
-      $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-      $text = preg_replace('~[^-\w]+~', '', $text);
-      $text = trim($text, '-');
-      $text = preg_replace('~-+~', '-', $text);
-      $text = strtolower($text);
-    
-      if (empty($text)) {
-        return 'n-a';
-      }
-    
-      return $text;
-    }
 ?>
+</div>

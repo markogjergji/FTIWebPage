@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <?php
     include("adminPanel.php");
-    
+?>
+
+<div class="post_container">
+
+<?php
     $query = "SELECT * FROM posts WHERE published ='0'";
 
     $total_reg = "10";
@@ -30,7 +34,7 @@
             $result = mysqli_query($conn,$query);
             $row = mysqli_fetch_array($result);
             $name = $data["title"];
-            echo "<p id='post'>Posted By:". $row['name']. "Title:". $name."</p><a href='?view=True&post_id=".$data['id']."'><i class='fas fa-eye'></i></a><a href='?approve=True&post_id=".$data['id']."'><i class='fas fa-thumbs-up'></i></a>";
+            echo "<div class='post'><p>Posted By:". $row['name']. "             Title:". mb_strimwidth($name, 0, 20, "...")."</p><a href='?view=True&post_id=".$data['id']."'><i class='fas fa-eye'></i></a><a href='?approve=True&post_id=".$data['id']."'><i class='fas fa-thumbs-up'></i></a></div>";
 
         }
 
@@ -39,7 +43,9 @@
         if ($pc>1) {
             echo " <a href='?page=$previous'><-".$previous."</a> ";
         }
+        if($pc > 1 and $pc < $tp){
             echo "|";
+        }
         if ($pc<$tp) {
             echo " <a href='?page=$next'>".$next."-></a>";
         }
@@ -59,10 +65,10 @@
         $r = mysqli_fetch_array($result);
         echo "
         <div    id='view-container'>
-            <p class='title'> ". $row['title'] . "</p>
-            <p class='author'> ". $r['name'] . "</p>
-            <p class='topic'> ". $tpRow['name'] ."</p>
-            <p class='post-body'> = ". htmlspecialchars_decode($row['body']) . "</p>;
+            <p class='title'> TITLE:    ". $row['title'] . "</p>
+            <p class='author'> AUTHOR:      ". $r['name'] . "</p>
+            <p class='topic'> TOPIC:    ". $tpRow['name'] ."</p>
+            <p class='post-body'> BODY:     ". htmlspecialchars_decode($row['body']) . "</p>
             <a href='?approve=True&post_id=".$row['id']."'><i class='fas fa-thumbs-up'></i></a>
         </div>
             

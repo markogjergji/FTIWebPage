@@ -42,9 +42,11 @@ if (!isset($_GET['code'])) {
     
     $_SESSION['displayName'] = $me['displayName'];
     $_SESSION['mail'] = $me['mail'];
-    $check_email="SELECT email FROM admins WHERE email= '". $me['mail'] . "'";
+    $check_email="SELECT * FROM users WHERE email= '". $me['mail'] . "'";
     $run_email=mysqli_query($db,$check_email);
-    if(mysqli_num_rows($run_email)>0){
+    $row = mysqli_fetch_array($run_email);
+
+    if($row['role'] == 'Admin'){
         $_SESSION['admin'] = TRUE;
         header('Location: /../../FTI/mainPage.php');
     }else if(preg_match('/^[\w-\.]+@fti\.edu\.al$/gi',$me['mail']) == 1){
@@ -53,10 +55,6 @@ if (!isset($_GET['code'])) {
     }else{
         header('Location: SignOut.php');
     }
-
-
-//echo '<pre>'; print_r($me); echo '</pre>';
- //   header('Location: /../../FTI/mainPage.php');
 }
  
 ?>

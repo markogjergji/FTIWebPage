@@ -1,8 +1,9 @@
 <?php
 session_start();
-include('../config/database.php');
+require('../config/database.php');
+require("../scripts/parseFunctions.php");
 
-if(empty($_SESSION['email']) || empty($_SESSION['admin'])){
+if(empty($_SESSION['admin'])){
     header("location:mainPage.php");
 }
 

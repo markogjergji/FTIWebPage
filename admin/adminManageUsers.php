@@ -1,28 +1,32 @@
 <!DOCTYPE html>
-<div>
+<div id ="add-admin-container">
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["REQUEST_URI"]);?>">
         <label for="fname">Name:</label>
-        <input type="text" name="name">
+        <input type="text" name="name" required>
         <label for="email">Email:</label>
-        <input type="text" name="email">
+        <input type="text" name="email" required>
         <input type="submit" value="Add Admin">
     </form>
 </div>
+
 <?php
     include("adminPanel.php");
-    
+?>
+
+<div class="post_container">
+
+<?php
+
     $query = "SELECT * FROM users WHERE role = 'Author'";
 
     $total_reg = "10";
 
-    $bodyErr = "";
+    $error = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        if (empty($_POST["name"]) or empty($_POST["email"])) {
-            $bodyErr = "Can't submit empty post";
-        }
-        else if(preg_match('/^[\w\-\.]+@fti\.edu\.al$/i',$_POST['email']) == 0){
-            $bodyErr = "Email is not Valid.";
+
+        if(preg_match('/^[\w\-\.]+@fti\.edu\.al$/i',$_POST['email']) == 0){
+            $error = "Email is not Valid.";
         }
         else{
             $query = "SELECT * FROM users WHERE email = '" .$_POST["email"]. "'";
@@ -60,7 +64,7 @@
         $tp = $tr / $total_reg;
 
         while ($data = mysqli_fetch_array($limit)) {
-            echo "<p id='post'>Name:". $data['name']. "Email:". $data['email']."</p><a href='?approve=True&user_id=".$data['id']."'><i class='fas fa-thumbs-up'></i></a>";
+            echo "<div class='post' id='users'><p>Name:". $data['name']. " Email:". $data['email']."</p><a href='?approve=True&user_id=".$data['id']."'><i class='fas fa-thumbs-up'></i></a></div>";
         }
 
         $previous = $pc -1;
@@ -68,7 +72,9 @@
         if ($pc>1) {
             echo " <a href='?page=$previous'><-".$previous."</a> ";
         }
+        if($pc > 1 and $pc < $tp){
             echo "|";
+        }
         if ($pc<$tp) {
             echo " <a href='?page=$next'>".$next."-></a>";
         }
@@ -81,5 +87,5 @@
         
     }
 }
-    echo $bodyErr;
+    echo $error;
 ?>

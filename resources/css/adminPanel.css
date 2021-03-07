@@ -3,6 +3,23 @@ body{
     padding:0;
     font-family: 'Poppins', sans-serif;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+   }
+   ::-webkit-scrollbar-thumb {
+    background: #aacbeb;
+    border-radius: 7px;
+   }
+   ::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(13deg, #495391 14%,#1b245f 64%);
+   }
+   ::-webkit-scrollbar-track{
+    background: #ebd3d3;
+    border-radius: 10px;
+    box-shadow: inset -1px 9px 0px #d7e9ff;
+   }
 #header{
     background-color:#00356B;
     padding:20px;
@@ -44,24 +61,102 @@ body{
     color:white;
 }
 #editor{
-    width:50vw;
+    width:70vw;
     position:absolute;
-    top:50vh;
-    left:35vw;
+    top:20vh;
+    left:0;
     height:100vh;
 }
 #auth-button{
     position:absolute;
-    top:20vh;
-    left:40vw;
+    top:30vh;
+    left:52vw;
 }
 #view-selector{
     position:absolute;
-    top:30vh;
-    left:40vw;
+    top:40vh;
+    left:52vw;
 }
 #timeline{
     position:absolute;
     top:50vh;
     left:40vw;
+}
+.gapi-analytics-auth-styles-signinbutton{
+    background-color:#00356B !important;
+    
+}
+.gapi-analytics-auth-styles-signinbutton-image{
+    border-right:white !important;
+}
+#contentSection{
+    height:7vh;
+    background-color:#6c9ecf;
+    border:none;
+    border-radius:25px;
+    color:white;
+    padding:10px;
+     font-family: 'Poppins', sans-serif;
+     outline:none;
+     margin-bottom:20px;
+}
+#title{
+    height:4vh;
+    background-color:#6c9ecf;
+    border:none;
+    border-radius:15px;
+    color:white;
+    outline:none;
+    font-weight:bold;
+    margin-left:15px;
+    margin-bottom:25px;
+    padding:5px;
+}
+input[type=submit]{
+    background-color:#00356B;
+    outline:none;
+    border-radius:30px;
+    border:none;
+    color:white;
+    padding:10px;
+    font-family: 'Poppins', sans-serif;
+    font-size:25px;
+    position:absolute;
+    top:2vh;
+    left:35vw;
+}
+.post_container{
+    position:absolute;
+    top:15vh;
+    left:30vw;
+}
+.post{
+    border:1px solid #c0bfbf;
+    margin-bottom:20px;
+    border-radius:10px;
+    padding:0 10px 0 10px;
+    width:60vw;
+}
+.post > p{
+    display:inline-block;
+}
+.post > a{
+    margin-left:30px;
+    color:#06509b;
+    font-size:25px;
+    float:right;
+    padding:10px 10px 0 10px;
+}
+#add-admin-container{
+    position:absolute;
+    top:20vh;
+    left:30vw;
+}
+#add-admin-container input[type=submit]{
+    font-size:16px;
+    top:-10px;
+}
+#users{
+    position:absolute;
+    top:18vh !important;
 }
